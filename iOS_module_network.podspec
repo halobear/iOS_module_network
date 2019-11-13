@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.source_files = "HBNetwork/*.{h,m}"
   s.framework = "CFNetwork"
-  s.dependency "AFNetworking/NSURLSession"
+  s.dependency "AFNetworking"
   s.dependency "YYModel"
 end
