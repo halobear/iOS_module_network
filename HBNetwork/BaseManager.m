@@ -38,7 +38,7 @@
     return sharedInstance;
 }
 
-+ (void)config:(NSString*)imKey token:(NSString *)token headerSignKey:(NSString *)headerSignKey headerTimeKey:(NSString *)headerTimeKey headersDic:(NSDictionary *)headersDic{
++ (void)configWithImKey:(NSString*)imKey token:(NSString *)token headerSignKey:(NSString *)headerSignKey headerTimeKey:(NSString *)headerTimeKey headersDic:(NSDictionary *)headersDic{
     BaseManager.sharedManager.imKey = imKey;
     BaseManager.sharedManager.token = token;
     BaseManager.sharedManager.headerSignKey = headerSignKey;

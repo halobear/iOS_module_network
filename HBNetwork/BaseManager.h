@@ -21,7 +21,7 @@
 + (BaseManager *)sharedManager;
 
 ///初始化headers
-+ (void)config:(NSString*)imKey token:(NSString *)token headerSignKey:(NSString *)headerSignKey headerTimeKey:(NSString *)headerTimeKey headersDic:(NSDictionary *)headersDic;
++ (void)configWithImKey:(NSString*)imKey token:(NSString *)token headerSignKey:(NSString *)headerSignKey headerTimeKey:(NSString *)headerTimeKey headersDic:(NSDictionary *)headersDic;
 
 @property (nonatomic, copy) void(^requestFailedBlock)(void);
 
