@@ -7,14 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef NS_ENUM(NSInteger, YTKServiceType) {
-    
-    YTKServiceTypeTest = 0,
-    YTKServiceTypeDev ,
-};
 
 @interface YTKNetconfig : NSObject
 
-+ (NSString *)config:(YTKServiceType)sever;
+///服务器地址
++ (void)config:(NSString *)baseUrl;
 
 @end
