@@ -12,8 +12,6 @@
 @interface BaseManager()
 
 @property(nonatomic, strong) NSString*imKey;
-@property(nonatomic, strong) NSString*headerSignKey;
-@property(nonatomic, strong) NSString*headerTimeKey;
 @property(nonatomic, strong) NSDictionary*headersDic;
 
 @end
@@ -38,11 +36,9 @@
     return sharedInstance;
 }
 
-+ (void)configWithImKey:(NSString*)imKey token:(NSString *)token headerSignKey:(NSString *)headerSignKey headerTimeKey:(NSString *)headerTimeKey headersDic:(NSDictionary *)headersDic{
++ (void)configWithImKey:(NSString*)imKey token:(NSString *)token headersDic:(NSDictionary *)headersDic{
     BaseManager.sharedManager.imKey = imKey;
     BaseManager.sharedManager.token = token;
-    BaseManager.sharedManager.headerSignKey = headerSignKey;
-    BaseManager.sharedManager.headerTimeKey = headerTimeKey;
     BaseManager.sharedManager.headersDic = headersDic;
 }
 
@@ -63,8 +59,8 @@
     NSString *hashStr = [self getSha256String:md5Str];
     
     NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:[super requestHeaderFieldValueDictionary]];
-    [headers setObject:[NSString stringWithFormat:@"%@",hashStr] forKey:BaseManager.sharedManager.headerSignKey];
-    [headers setObject:[NSString stringWithFormat:@"%@",_timeString] forKey:BaseManager.sharedManager.headerTimeKey];
+    [headers setObject:[NSString stringWithFormat:@"%@",hashStr] forKey:@"Http-Request-Halo-Sign"];
+    [headers setObject:[NSString stringWithFormat:@"%@",_timeString] forKey:@"Http-Request-Halo-Time"];
     [headers setValuesForKeysWithDictionary:BaseManager.sharedManager.headersDic];
     [headers setObject:header forKey:@"Authorization"];
     
