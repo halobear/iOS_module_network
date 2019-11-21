@@ -21,4 +21,8 @@
          
 }
 
++ (NSString*)configOther:(NSString *)baseUrl{
+    return baseUrl;
+}
+
 @end

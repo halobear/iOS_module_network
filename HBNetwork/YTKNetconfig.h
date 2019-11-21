@@ -12,5 +12,6 @@
 
 ///服务器地址
 + (void)config:(NSString *)baseUrl;
++ (NSString*)configOther:(NSString *)baseUrl;
 
 @end
