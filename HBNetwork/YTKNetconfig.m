@@ -21,8 +21,8 @@
          
 }
 
-+ (NSString*)configOther:(NSString *)baseUrl{
-    return baseUrl;
++ (void)configOther:(NSString *)baseUrl{
+    YTKNetconfig.sharedConfig.getOtherService = baseUrl
 }
 
 @end

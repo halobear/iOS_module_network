@@ -12,6 +12,8 @@
 
 ///服务器地址
 + (void)config:(NSString *)baseUrl;
-+ (NSString*)configOther:(NSString *)baseUrl;
++ (void)configOther:(NSString *)baseUrl;
+
+@property (nonatomic, strong) NSString *getOtherService;
 
 @end
