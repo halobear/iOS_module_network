@@ -10,6 +10,8 @@
 
 @interface YTKNetconfig : NSObject
 
++ (YTKNetconfig *)shared;
+
 ///服务器地址
 + (void)config:(NSString *)baseUrl;
 + (void)configOther:(NSString *)baseUrl;

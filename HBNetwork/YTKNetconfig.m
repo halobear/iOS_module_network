@@ -11,6 +11,15 @@
 
 @implementation YTKNetconfig
 
++ (YTKNetconfig *)shared{
+    static id sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    return sharedInstance;
+}
+
 + (void)config:(NSString *)baseUrl{
     
     YTKNetworkAgent *agent = [YTKNetworkAgent sharedAgent];
