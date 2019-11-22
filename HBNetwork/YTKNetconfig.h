@@ -13,9 +13,9 @@
 + (YTKNetconfig *)shared;
 
 ///服务器地址
-+ (void)config:(NSString *)baseUrl;
-+ (void)configOther:(NSString *)baseUrl;
++ (void)configBaseUrl:(NSString *)baseUrl;
++ (void)configOtherBaseUrl:(NSString*)otherBaseUrl;
 
-@property (nonatomic, strong) NSString *getOtherService;
+@property (nonatomic, strong) NSString *getOtherBaseUrl;
 
 @end

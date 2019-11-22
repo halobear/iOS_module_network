@@ -20,7 +20,7 @@
     return sharedInstance;
 }
 
-+ (void)config:(NSString *)baseUrl{
++ (void)configBaseUrl:(NSString *)baseUrl{
     
     YTKNetworkAgent *agent = [YTKNetworkAgent sharedAgent];
     [agent setValue:[NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json",@"text/html",@"text/css", nil] forKeyPath:@"_manager.responseSerializer.acceptableContentTypes"];
@@ -30,8 +30,9 @@
          
 }
 
-+ (void)configOther:(NSString *)baseUrl{
-    YTKNetconfig.shared.getOtherService = baseUrl;
++ (void)configOtherBaseUrl:(NSString*)otherBaseUrl{
+    YTKNetconfig.shared.getOtherBaseUrl = otherBaseUrl;
 }
+
 
 @end

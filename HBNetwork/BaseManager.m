@@ -8,11 +8,14 @@
 
 #import "BaseManager.h"
 #import <CommonCrypto/CommonDigest.h>
+#import <YTKNetconfig.h>
 
 @interface BaseManager()
 
 @property(nonatomic, strong) NSString*imKey;
 @property(nonatomic, strong) NSDictionary*headersDic;
+@property(nonatomic, strong) NSString*customAppLabel;
+@property(nonatomic, strong) NSString*otherAppLabel;
 
 @end
 
@@ -42,8 +45,15 @@
     BaseManager.sharedManager.headersDic = headersDic;
 }
 
--(NSDictionary<NSString *,NSString *> *)requestHeaderFieldValueDictionary
-{
++ (void)configWithImKey:(NSString*)imKey token:(NSString *)token customAppLabel:(NSString*)customAppLabel otherAppLabel:(NSString*)otherAppLabel headersDic:(NSDictionary *)headersDic{
+    BaseManager.sharedManager.imKey = imKey;
+    BaseManager.sharedManager.token = token;
+    BaseManager.sharedManager.headersDic = headersDic;
+    BaseManager.sharedManager.customAppLabel = customAppLabel;
+    BaseManager.sharedManager.otherAppLabel = otherAppLabel;
+}
+
+-(NSDictionary<NSString *,NSString *> *)requestHeaderFieldValueDictionary{
     
     NSString *imKey = BaseManager.sharedManager.imKey;
     NSString *header = [NSString stringWithFormat:@"Bearer %@",BaseManager.sharedManager.token];
@@ -61,6 +71,13 @@
     NSMutableDictionary *headers = [NSMutableDictionary dictionaryWithDictionary:[super requestHeaderFieldValueDictionary]];
     [headers setObject:[NSString stringWithFormat:@"%@",hashStr] forKey:@"Http-Request-Halo-Sign"];
     [headers setObject:[NSString stringWithFormat:@"%@",_timeString] forKey:@"Http-Request-Halo-Time"];
+    if (BaseManager.sharedManager.customAppLabel != nil && BaseManager.sharedManager.customAppLabel.length != 0) {
+         if ([self.baseUrl isEqualToString:YTKNetconfig.shared.getOtherBaseUrl]) {
+             [headers setObject:[NSString stringWithFormat:@"%@",BaseManager.sharedManager.otherAppLabel] forKey:@"X-Halo-App"];
+         }else{
+             [headers setObject:[NSString stringWithFormat:@"%@",BaseManager.sharedManager.customAppLabel] forKey:@"X-Halo-App"];
+         }
+    }
     [headers setValuesForKeysWithDictionary:BaseManager.sharedManager.headersDic];
     [headers setObject:header forKey:@"Authorization"];
     
