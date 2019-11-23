@@ -16,6 +16,7 @@
 @property(nonatomic, strong) NSDictionary*headersDic;
 @property(nonatomic, strong) NSString*customAppLabel;
 @property(nonatomic, strong) NSString*otherAppLabel;
+@property(nonatomic, strong) NSString*otherImKey;
 
 @end
 
@@ -53,9 +54,18 @@
     BaseManager.sharedManager.otherAppLabel = otherAppLabel;
 }
 
++ (void)configWithImKey:(NSString*)imKey otherIMKey:(NSString*)otherIMKey token:(NSString *)token customAppLabel:(NSString*)customAppLabel otherAppLabel:(NSString*)otherAppLabel headersDic:(NSDictionary *)headersDic{
+    BaseManager.sharedManager.imKey = imKey;
+    BaseManager.sharedManager.imKey = otherIMKey;
+    BaseManager.sharedManager.token = token;
+    BaseManager.sharedManager.headersDic = headersDic;
+    BaseManager.sharedManager.customAppLabel = customAppLabel;
+    BaseManager.sharedManager.otherAppLabel = otherAppLabel;
+}
+
 -(NSDictionary<NSString *,NSString *> *)requestHeaderFieldValueDictionary{
     
-    NSString *imKey = BaseManager.sharedManager.imKey;
+    NSString *imKey = [self.baseUrl isEqualToString:YTKNetconfig.shared.getOtherBaseUrl] ? BaseManager.sharedManager.otherImKey : BaseManager.sharedManager.imKey;
     NSString *header = [NSString stringWithFormat:@"Bearer %@",BaseManager.sharedManager.token];
 
     NSString *paramsStr;

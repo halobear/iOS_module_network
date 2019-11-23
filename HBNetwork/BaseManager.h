@@ -24,7 +24,8 @@
 + (void)configWithImKey:(NSString*)imKey token:(NSString *)token headersDic:(NSDictionary *)headersDic;
 ///初始化headers带有两个域名的以及APP标识不同
 + (void)configWithImKey:(NSString*)imKey token:(NSString *)token customAppLabel:(NSString*)customAppLabel otherAppLabel:(NSString*)otherAppLabel headersDic:(NSDictionary *)headersDic;
-
+///初始化headers带有两个域名的两个加密Key以及APP标识不同
++ (void)configWithImKey:(NSString*)imKey otherIMKey:(NSString*)otherIMKey token:(NSString *)token customAppLabel:(NSString*)customAppLabel otherAppLabel:(NSString*)otherAppLabel headersDic:(NSDictionary *)headersDic;
 @property (nonatomic, copy) void(^requestFailedBlock)(void);
 
 @end
