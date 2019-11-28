@@ -56,7 +56,7 @@
 
 + (void)configWithImKey:(NSString*)imKey otherIMKey:(NSString*)otherIMKey token:(NSString *)token customAppLabel:(NSString*)customAppLabel otherAppLabel:(NSString*)otherAppLabel headersDic:(NSDictionary *)headersDic{
     BaseManager.sharedManager.imKey = imKey;
-    BaseManager.sharedManager.imKey = otherIMKey;
+    BaseManager.sharedManager.otherImKey = otherIMKey;
     BaseManager.sharedManager.token = token;
     BaseManager.sharedManager.headersDic = headersDic;
     BaseManager.sharedManager.customAppLabel = customAppLabel;
